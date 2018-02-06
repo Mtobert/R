@@ -1,0 +1,15 @@
+kwNN <- function(xl, z, k, metricFunction = euclideanDistance)
+{
+  n <- dim(xl)[2] - 1
+  distances <- apply(xl[ ,1:n], 1, metricFunction, z) 
+  sortedDist <-  sort(distances, index.return=TRUE)
+  classes <- xl[sortedDist$ix[1:k], n + 1]
+  classesList <- unique(classes)
+  counts <- rep(0,length(classesList))
+  for (i in 1:k)
+  {
+    counts[which(classes[i]==classesList)] =
+      counts[which(classes[i]==classesList)] + w(i,k)
+  }
+  as.character(classesList[which.max(counts)])
+}
