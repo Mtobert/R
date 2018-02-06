@@ -1,0 +1,35 @@
+potentialFunc <- function(xl, x, h, gammaV){
+  distances <- c()
+  wght_to_class <- c()
+  for(i in 1:nrow(xl)){
+    distances[i] <- euclideanDistance(xl[i , -ncol(xl)] , x)
+    wght_to_class[i] <- kerne(distances[i] / h[i], ker.type[7]) * gammaV[i]  
+  }
+  
+  potentional_wght <- data.frame(p_class <- xl$Species, wght_to_class)
+  wght_max <- c( sum_setosa <- sum(potentional_wght[potentional_wght$p_class == "setosa" , 2]),
+                 sum_versicolor <- sum(potentional_wght[potentional_wght$p_class == "versicolor" , 2]),
+                 sum_virginica <- sum(potentional_wght[potentional_wght$p_class == "virginica" , 2]) )
+  if(sum(wght_max) == 0){
+    
+    res <- ""
+  }else{
+    res <- levels(xl$Species)[match(max(wght_max), wght_max)]
+  }
+  return(res)
+}
+
+getBestGamma <- function(xl, h, eps) {
+  gammaV <- rep(0, nrow(xl))
+  i <- 1
+  while(loo_potential(xl, h, gammaV) > eps) {
+    n <- dim(xl)[2]
+    # i <- sample(1:nrow(xl), 1)
+    if(potentialFunc(xl, xl[i, -n], h, gammaV) != xl[i, n]) {
+      gammaV[i] <-  gammaV[i] + 1
+    }
+    i <- i + 1
+    if(i>nrow(xl)) i <- 1
+  }
+  return(gammaV) 
+}
