@@ -1,0 +1,12 @@
+name: LinearMerged
+title: LinearMerged
+username:
+account: zoncker
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 256137
+bundleId: 1172229
+url: https://zoncker.shinyapps.io/LinearMerged/
+when: 1515690453.66051
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,12 @@
+name: LLines
+title: LLines
+username:
+account: zoncker
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 256101
+bundleId: 1172061
+url: https://zoncker.shinyapps.io/LLines/
+when: 1515683388.42806
+asMultiple: FALSE
+asStatic: FALSE
